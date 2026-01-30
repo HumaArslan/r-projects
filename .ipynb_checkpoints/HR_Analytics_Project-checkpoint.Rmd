@@ -1,0 +1,55 @@
+
+---
+title: "HR Analytics: Attrition & Performance Analysis"
+author: "Huma Arslan"
+output: html_document
+---
+
+## Objective
+This project analyzes employee attrition, performance, and salary trends using R.
+
+## Load Libraries
+```{r}
+library(dplyr)
+library(ggplot2)
+```
+
+## Dataset
+```{r}
+hr <- data.frame(
+  Gender = c("Male","Female","Male","Female","Male","Female"),
+  Department = c("HR","IT","Finance","HR","IT","Finance"),
+  JobRole = c("Manager","Analyst","Executive","Executive","Analyst","Manager"),
+  Salary = c(120000,80000,100000,60000,75000,130000),
+  PerformanceRating = c(4,3,5,2,3,5),
+  Attrition = c("No","Yes","No","Yes","Yes","No")
+)
+```
+
+## Attrition Rate by Department
+```{r}
+hr %>%
+  group_by(Department) %>%
+  summarise(AttritionRate = mean(Attrition == "Yes") * 100)
+```
+
+## Salary Distribution
+```{r}
+ggplot(hr, aes(x = Salary)) +
+  geom_histogram(bins = 5) +
+  labs(title = "Salary Distribution")
+```
+
+## Performance vs Attrition
+```{r}
+ggplot(hr, aes(x = PerformanceRating, fill = Attrition)) +
+  geom_bar(position = "dodge") +
+  labs(title = "Performance Rating vs Attrition")
+```
+
+## Key Insight
+```{r}
+hr %>%
+  group_by(Attrition) %>%
+  summarise(AverageSalary = mean(Salary))
+```
