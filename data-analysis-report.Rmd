@@ -1,0 +1,136 @@
+---
+title: "Data Analysis Report"
+author: "Your Name"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    theme: cosmo
+    highlight: tango
+    code_folding: show
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(knitr)
+library(kableExtra)
+```
+
+## Executive Summary
+
+Provide a brief overview of your analysis and key findings here.
+
+## Introduction
+
+### Objectives
+
+- Objective 1: Describe your first analysis objective
+- Objective 2: Describe your second analysis objective
+- Objective 3: Describe your third analysis objective
+
+### Data Description
+
+Describe your dataset, including:
+
+- Source of data
+- Number of observations
+- Number of variables
+- Time period covered
+
+## Data Loading and Preparation
+
+```{r load-data}
+# Load your data
+# data <- read.csv("your_data.csv")
+
+# Example with built-in dataset
+data <- mtcars
+```
+
+### Data Structure
+
+```{r data-structure}
+str(data)
+```
+
+### Summary Statistics
+
+```{r summary-stats}
+summary(data) %>%
+  kable() %>%
+  kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+## Exploratory Data Analysis
+
+### Univariate Analysis
+
+```{r univariate}
+# Distribution of key variables
+ggplot(data, aes(x = mpg)) +
+  geom_histogram(bins = 20, fill = "steelblue", color = "white") +
+  theme_minimal() +
+  labs(title = "Distribution of Miles Per Gallon",
+       x = "MPG", y = "Frequency")
+```
+
+### Bivariate Analysis
+
+```{r bivariate}
+# Relationship between variables
+ggplot(data, aes(x = wt, y = mpg)) +
+  geom_point(color = "steelblue", size = 3) +
+  geom_smooth(method = "lm", color = "coral") +
+  theme_minimal() +
+  labs(title = "MPG vs Weight",
+       x = "Weight (1000 lbs)", y = "Miles Per Gallon")
+```
+
+### Correlation Analysis
+
+```{r correlation}
+# Correlation matrix
+cor_matrix <- cor(data)
+corrplot::corrplot(cor_matrix, method = "color", type = "upper")
+```
+
+## Statistical Analysis
+
+### Hypothesis Testing
+
+```{r hypothesis-test}
+# Example t-test
+t_test_result <- t.test(mpg ~ am, data = data)
+print(t_test_result)
+```
+
+### Regression Analysis
+
+```{r regression}
+# Linear regression model
+model <- lm(mpg ~ wt + hp + am, data = data)
+summary(model)
+```
+
+## Results and Interpretation
+
+Interpret your findings here. Discuss:
+
+- Key patterns observed
+- Statistical significance
+- Practical implications
+- Limitations of the analysis
+
+## Conclusions
+
+Summarize your main findings and recommendations.
+
+## Appendix
+
+### Session Info
+
+```{r session-info}
+sessionInfo()
+```
