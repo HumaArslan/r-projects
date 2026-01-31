@@ -1,0 +1,16 @@
+---
+title: "Workplace Stress Analysis"
+author: "Huma Arslan"
+output: html_document
+---
+
+## Objective
+Analyze the relationship between workload and stress.
+
+```{r}
+data <- data.frame(
+  Workload = c(30,40,50,60,70),
+  Stress = c(2,3,4,4,5)
+)
+cor(data$Workload, data$Stress)
+```

@@ -1,0 +1,16 @@
+---
+title: "Social Media Engagement Trends"
+author: "Huma Arslan"
+output: html_document
+---
+
+## Objective
+Compare engagement across platforms.
+
+```{r}
+social <- data.frame(
+  Platform = c("Facebook","Instagram","Twitter","LinkedIn"),
+  Engagement = c(120,300,90,150)
+)
+barplot(social$Engagement, names.arg = social$Platform)
+```

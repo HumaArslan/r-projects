@@ -1,0 +1,13 @@
+---
+title: "Public Opinion Survey Analysis"
+author: "Huma Arslan"
+output: html_document
+---
+
+## Objective
+Summarize survey opinions.
+
+```{r}
+opinion <- c("Agree","Disagree","Agree","Neutral","Agree")
+table(opinion)
+```

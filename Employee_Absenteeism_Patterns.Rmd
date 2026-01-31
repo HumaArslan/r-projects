@@ -1,0 +1,16 @@
+---
+title: "Employee Absenteeism Patterns"
+author: "Huma Arslan"
+output: html_document
+---
+
+## Objective
+Analyze absenteeism trends by department.
+
+```{r}
+absenteeism <- data.frame(
+  Department = c("HR","IT","Finance","IT","HR"),
+  DaysAbsent = c(2,4,1,3,2)
+)
+aggregate(DaysAbsent ~ Department, absenteeism, mean)
+```
